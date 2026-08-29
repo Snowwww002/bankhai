@@ -1,508 +1,1232 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Join our official Telegram channel for instant updates, exclusive content, and the latest information delivered directly to you." />
-  <meta name="theme-color" content="#f5f7ff" />
-  <title>Join Our Telegram Channel — Instant Updates & Exclusive Content</title>
+  <meta charset="UTF-8">
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <meta name="theme-color" content="#f7f9ff">
+
+  <meta name="description"
+        content="Join our Telegram channel for instant updates, exclusive content and the latest information.">
+
+  <title>Join Our Telegram Channel</title>
 
   <style>
     /* =========================================================
-       DESIGN TOKENS
+       RESET
     ========================================================= */
-    :root {
-      --bg: #f6f8ff;
-      --bg-2: #eef1fb;
-      --surface: rgba(255, 255, 255, 0.72);
-      --surface-solid: #ffffff;
-      --ink: #0f172a;
-      --ink-soft: #475569;
-      --ink-mute: #94a3b8;
-      --brand: #2f8bfb;
-      --brand-2: #7c5cff;
-      --brand-deep: #1d6fe0;
-      --ring: rgba(47, 139, 251, 0.35);
-      --border: rgba(15, 23, 42, 0.08);
-      --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.05);
-      --shadow-md: 0 10px 30px -12px rgba(30, 64, 175, 0.28);
-      --shadow-lg: 0 40px 80px -30px rgba(60, 80, 200, 0.35);
-      --radius: 28px;
-      --radius-sm: 16px;
-      --font: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html, body { height: 100%; }
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
-      font-family: var(--font);
-      color: var(--ink);
-      background: var(--bg);
+      min-height: 100vh;
+      width: 100%;
+      overflow-x: hidden;
+
+      font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Helvetica,
+        Arial,
+        sans-serif;
+
+      color: #111827;
+
+      background:
+        radial-gradient(
+          circle at 10% 10%,
+          rgba(94, 92, 230, 0.12),
+          transparent 32%
+        ),
+        radial-gradient(
+          circle at 90% 15%,
+          rgba(45, 136, 255, 0.14),
+          transparent 30%
+        ),
+        radial-gradient(
+          circle at 50% 100%,
+          rgba(120, 85, 255, 0.10),
+          transparent 35%
+        ),
+        #f8faff;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      padding: 24px 16px;
+
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
-      line-height: 1.5;
-      min-height: 100dvh;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* =========================================================
+       BACKGROUND BLOBS
+    ========================================================= */
+
+    .background {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(70px);
+      opacity: 0.42;
+      animation: floatBlob 10s ease-in-out infinite;
+    }
+
+    .blob.one {
+      width: 180px;
+      height: 180px;
+      top: -50px;
+      left: -40px;
+      background: rgba(71, 121, 255, 0.20);
+    }
+
+    .blob.two {
+      width: 220px;
+      height: 220px;
+      right: -70px;
+      top: 15%;
+      background: rgba(142, 81, 255, 0.16);
+      animation-delay: -3s;
+    }
+
+    .blob.three {
+      width: 190px;
+      height: 190px;
+      bottom: -80px;
+      left: 35%;
+      background: rgba(38, 160, 255, 0.12);
+      animation-delay: -6s;
+    }
+
+    @keyframes floatBlob {
+      0%,
+      100% {
+        transform: translate3d(0, 0, 0);
+      }
+
+      50% {
+        transform: translate3d(0, 18px, 0);
+      }
+    }
+
+    /* =========================================================
+       MAIN WRAPPER
+    ========================================================= */
+
+    .page {
+      position: relative;
+      z-index: 2;
+
+      width: 100%;
+      max-width: 540px;
+
+      animation: pageEnter 0.8s ease both;
+    }
+
+    @keyframes pageEnter {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* =========================================================
+       MAIN CARD
+    ========================================================= */
+
+    .card {
+      position: relative;
+
+      width: 100%;
+
+      padding: 30px 20px 22px;
+
+      background: rgba(255, 255, 255, 0.88);
+
+      border: 1px solid rgba(255, 255, 255, 0.9);
+
+      border-radius: 32px;
+
+      box-shadow:
+        0 30px 80px rgba(31, 52, 90, 0.10),
+        0 8px 30px rgba(31, 52, 90, 0.06),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+
+      position: absolute;
+
+      top: -120px;
+      left: 50%;
+
+      width: 260px;
+      height: 260px;
+
+      transform: translateX(-50%);
+
+      background: radial-gradient(
+        circle,
+        rgba(68, 116, 255, 0.12),
+        transparent 70%
+      );
+
+      pointer-events: none;
+    }
+
+    /* =========================================================
+       LOGO
+    ========================================================= */
+
+    .logo-wrap {
+      position: relative;
+      z-index: 2;
+
+      width: 82px;
+      height: 82px;
+
+      margin: 0 auto 18px;
+
+      border-radius: 24px;
+
+      background: #ffffff;
+
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 24px 18px;
-      position: relative;
-      overflow-x: hidden;
+
+      box-shadow:
+        0 15px 35px rgba(42, 87, 160, 0.14),
+        0 0 0 7px rgba(255, 255, 255, 0.55);
+
+      overflow: hidden;
     }
 
-    /* =========================================================
-       PREMIUM BACKGROUND
-    ========================================================= */
-    .bg {
-      position: fixed;
-      inset: 0;
-      z-index: -2;
-      background:
-        radial-gradient(120% 90% at 15% 10%, rgba(124, 92, 255, 0.14), transparent 55%),
-        radial-gradient(120% 90% at 85% 15%, rgba(47, 139, 251, 0.16), transparent 55%),
-        radial-gradient(120% 120% at 50% 110%, rgba(124, 92, 255, 0.10), transparent 60%),
-        linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
-    }
-
-    .orb {
-      position: fixed;
-      z-index: -1;
-      border-radius: 50%;
-      filter: blur(60px);
-      opacity: 0.55;
-      pointer-events: none;
-      will-change: transform;
-    }
-    .orb.a {
-      width: 340px; height: 340px;
-      top: -120px; left: -80px;
-      background: radial-gradient(circle, rgba(47,139,251,0.55), transparent 70%);
-      animation: float1 14s ease-in-out infinite;
-    }
-    .orb.b {
-      width: 380px; height: 380px;
-      bottom: -140px; right: -100px;
-      background: radial-gradient(circle, rgba(124,92,255,0.5), transparent 70%);
-      animation: float2 18s ease-in-out infinite;
-    }
-
-    @keyframes float1 {
-      0%,100% { transform: translate(0,0); }
-      50% { transform: translate(40px, 30px); }
-    }
-    @keyframes float2 {
-      0%,100% { transform: translate(0,0); }
-      50% { transform: translate(-35px, -25px); }
-    }
-
-    /* =========================================================
-       CARD
-    ========================================================= */
-    .card {
+    .logo {
       width: 100%;
-      max-width: 440px;
-      background: var(--surface);
-      backdrop-filter: blur(22px) saturate(150%);
-      -webkit-backdrop-filter: blur(22px) saturate(150%);
-      border: 1px solid rgba(255, 255, 255, 0.6);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow-lg);
-      padding: 40px 30px 30px;
-      text-align: center;
-      position: relative;
-      opacity: 0;
-      transform: translateY(24px) scale(0.98);
-      animation: cardIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.1s forwards;
+      height: 100%;
+
+      object-fit: cover;
+
+      display: block;
     }
-
-    @keyframes cardIn {
-      to { opacity: 1; transform: translateY(0) scale(1); }
-    }
-
-    /* stagger children */
-    .reveal { opacity: 0; transform: translateY(14px); animation: revealIn 0.6s ease forwards; }
-    .reveal:nth-child(1) { animation-delay: 0.30s; }
-    .reveal:nth-child(2) { animation-delay: 0.40s; }
-    .reveal:nth-child(3) { animation-delay: 0.50s; }
-    .reveal:nth-child(4) { animation-delay: 0.60s; }
-    .reveal:nth-child(5) { animation-delay: 0.70s; }
-    .reveal:nth-child(6) { animation-delay: 0.80s; }
-
-    @keyframes revealIn { to { opacity: 1; transform: translateY(0); } }
 
     /* =========================================================
-       BADGE / ICON
+       BADGE
     ========================================================= */
+
     .badge {
-      width: 78px;
-      height: 78px;
-      margin: 0 auto 22px;
-      border-radius: 22px;
-      display: grid;
-      place-items: center;
-      background: linear-gradient(140deg, var(--brand), var(--brand-2));
-      box-shadow: 0 18px 34px -12px var(--ring), inset 0 1px 0 rgba(255,255,255,0.4);
       position: relative;
-    }
-    .badge::after {
-      content: "";
-      position: absolute;
-      inset: -6px;
-      border-radius: 26px;
-      background: linear-gradient(140deg, var(--brand), var(--brand-2));
-      filter: blur(14px);
-      opacity: 0.45;
-      z-index: -1;
-      animation: pulse 3s ease-in-out infinite;
-    }
-    @keyframes pulse { 0%,100% { opacity: 0.35; } 50% { opacity: 0.6; } }
-    .badge svg { width: 40px; height: 40px; }
+      z-index: 2;
 
-    /* =========================================================
-       TYPOGRAPHY
-    ========================================================= */
-    h1 {
-      font-size: clamp(1.65rem, 6vw, 2.1rem);
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      line-height: 1.15;
-      margin-bottom: 12px;
-      text-wrap: balance;
-      background: linear-gradient(120deg, var(--ink), #33415f);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-    .subtitle {
-      font-size: 1rem;
-      color: var(--ink-soft);
-      max-width: 340px;
-      margin: 0 auto 26px;
-      text-wrap: pretty;
-    }
+      width: fit-content;
 
-    /* =========================================================
-       COUNTDOWN
-    ========================================================= */
-    .countdown {
-      margin: 0 auto 26px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-    }
-    .ring-wrap { position: relative; width: 132px; height: 132px; }
-    .ring-wrap svg { transform: rotate(-90deg); width: 100%; height: 100%; }
-    .ring-bg { fill: none; stroke: rgba(15,23,42,0.08); stroke-width: 9; }
-    .ring-fg {
-      fill: none;
-      stroke: url(#grad);
-      stroke-width: 9;
-      stroke-linecap: round;
-      transition: stroke-dashoffset 1s linear;
-    }
-    .count-num {
-      position: absolute;
-      inset: 0;
-      display: grid;
-      place-items: center;
-      font-size: 2.9rem;
-      font-weight: 800;
-      color: var(--ink);
-      letter-spacing: -0.03em;
-    }
-    .count-num span { display: inline-block; animation: numPop 0.4s ease; }
-    @keyframes numPop {
-      0% { transform: scale(0.6); opacity: 0; }
-      60% { transform: scale(1.08); }
-      100% { transform: scale(1); opacity: 1; }
-    }
-    .redirect-text {
+      margin: 0 auto 16px;
+
+      padding: 7px 12px;
+
       display: flex;
       align-items: center;
       gap: 7px;
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: var(--ink);
+
+      border-radius: 999px;
+
+      background: rgba(47, 128, 237, 0.08);
+
+      border: 1px solid rgba(47, 128, 237, 0.12);
+
+      color: #2878db;
+
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.2px;
     }
-    .redirect-text svg { width: 16px; height: 16px; color: var(--brand); }
-    .please-wait { font-size: 0.82rem; color: var(--ink-mute); }
+
+    .badge-dot {
+      width: 7px;
+      height: 7px;
+
+      border-radius: 50%;
+
+      background: #2f80ed;
+
+      box-shadow: 0 0 0 4px rgba(47, 128, 237, 0.10);
+    }
+
+    /* =========================================================
+       HEADINGS
+    ========================================================= */
+
+    .hero {
+      position: relative;
+      z-index: 2;
+
+      text-align: center;
+    }
+
+    .hero h1 {
+      max-width: 460px;
+
+      margin: 0 auto;
+
+      font-size: clamp(31px, 8vw, 48px);
+
+      line-height: 1.06;
+
+      letter-spacing: -1.8px;
+
+      font-weight: 800;
+
+      color: #101828;
+    }
+
+    .gradient-text {
+      background:
+        linear-gradient(
+          135deg,
+          #286fe8 0%,
+          #5b55e8 50%,
+          #7748dc 100%
+        );
+
+      -webkit-background-clip: text;
+      background-clip: text;
+
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-description {
+      max-width: 410px;
+
+      margin: 16px auto 0;
+
+      color: #667085;
+
+      font-size: 15px;
+      line-height: 1.65;
+
+      font-weight: 450;
+    }
+
+    /* =========================================================
+       COUNTDOWN CARD
+    ========================================================= */
+
+    .countdown-card {
+      position: relative;
+      z-index: 2;
+
+      margin: 25px auto 18px;
+
+      width: 100%;
+      max-width: 330px;
+
+      padding: 22px 18px 20px;
+
+      border-radius: 25px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(248, 251, 255, 0.95),
+          rgba(242, 246, 255, 0.82)
+        );
+
+      border: 1px solid rgba(47, 128, 237, 0.10);
+
+      box-shadow:
+        0 14px 35px rgba(36, 77, 145, 0.07);
+    }
+
+    .countdown-top {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+
+      color: #667085;
+
+      font-size: 12px;
+      font-weight: 700;
+
+      text-transform: uppercase;
+      letter-spacing: 0.7px;
+
+      margin-bottom: 10px;
+    }
+
+    .mini-telegram {
+      width: 19px;
+      height: 19px;
+
+      border-radius: 50%;
+
+      background: #2aabee;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      color: white;
+    }
+
+    .mini-telegram svg {
+      width: 11px;
+      height: 11px;
+      fill: currentColor;
+    }
+
+    /* =========================================================
+       CIRCLE TIMER
+    ========================================================= */
+
+    .timer-circle {
+      position: relative;
+
+      width: 105px;
+      height: 105px;
+
+      margin: 0 auto 13px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .timer-svg {
+      position: absolute;
+
+      inset: 0;
+
+      width: 100%;
+      height: 100%;
+
+      transform: rotate(-90deg);
+    }
+
+    .timer-track {
+      fill: none;
+
+      stroke: #e6ebf5;
+
+      stroke-width: 7;
+    }
+
+    .timer-progress {
+      fill: none;
+
+      stroke: url(#timerGradient);
+
+      stroke-width: 7;
+
+      stroke-linecap: round;
+
+      transition: stroke-dashoffset 0.9s linear;
+    }
+
+    .timer-number {
+      position: relative;
+      z-index: 2;
+
+      font-size: 35px;
+      line-height: 1;
+
+      font-weight: 800;
+
+      letter-spacing: -1px;
+
+      color: #111827;
+
+      transition:
+        transform 0.25s ease,
+        opacity 0.25s ease;
+    }
+
+    .timer-number.change {
+      transform: scale(1.16);
+      opacity: 0.45;
+    }
+
+    .redirect-text {
+      text-align: center;
+
+      font-size: 13px;
+
+      color: #475467;
+
+      font-weight: 600;
+    }
+
+    .redirect-subtext {
+      text-align: center;
+
+      margin-top: 5px;
+
+      color: #98a2b3;
+
+      font-size: 11px;
+    }
 
     /* =========================================================
        CTA BUTTON
     ========================================================= */
+
     .cta {
-      display: inline-flex;
+      position: relative;
+      z-index: 2;
+
+      width: 100%;
+
+      min-height: 57px;
+
+      border: none;
+
+      border-radius: 18px;
+
+      padding: 0 22px;
+
+      display: flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
-      width: 100%;
-      padding: 17px 24px;
-      font-size: 1.05rem;
-      font-weight: 700;
-      letter-spacing: 0.01em;
-      color: #fff;
-      border: none;
-      border-radius: var(--radius-sm);
+      gap: 11px;
+
+      color: #ffffff;
+
+      background:
+        linear-gradient(
+          135deg,
+          #2aabee 0%,
+          #287bea 52%,
+          #6658e8 100%
+        );
+
+      box-shadow:
+        0 14px 30px rgba(47, 128, 237, 0.25),
+        0 4px 10px rgba(47, 128, 237, 0.12);
+
       cursor: pointer;
-      background: linear-gradient(135deg, var(--brand), var(--brand-2));
-      box-shadow: 0 16px 30px -10px var(--ring), inset 0 1px 0 rgba(255,255,255,0.35);
-      position: relative;
+
+      font-family: inherit;
+
+      font-size: 14px;
+
+      font-weight: 800;
+
+      letter-spacing: 0.5px;
+
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        filter 0.2s ease;
+
       overflow: hidden;
-      transition: transform 0.18s ease, box-shadow 0.25s ease;
-      -webkit-tap-highlight-color: transparent;
     }
-    .cta svg { width: 22px; height: 22px; }
+
     .cta::before {
       content: "";
+
       position: absolute;
-      top: 0; left: -120%;
-      width: 60%; height: 100%;
-      background: linear-gradient(100deg, transparent, rgba(255,255,255,0.35), transparent);
+
+      top: 0;
+      left: -100%;
+
+      width: 70%;
+      height: 100%;
+
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.22),
+          transparent
+        );
+
       transform: skewX(-20deg);
-      animation: shine 3.2s ease-in-out infinite;
-    }
-    @keyframes shine {
-      0% { left: -120%; }
-      55%,100% { left: 160%; }
-    }
-    .cta:hover { transform: translateY(-2px); box-shadow: 0 22px 40px -12px var(--ring), inset 0 1px 0 rgba(255,255,255,0.35); }
-    .cta:active { transform: translateY(0) scale(0.97); }
 
-    /* =========================================================
-       TRUST
-    ========================================================= */
-    .trust {
+      transition: left 0.65s ease;
+    }
+
+    .cta:hover::before {
+      left: 140%;
+    }
+
+    .cta:hover {
+      transform: translateY(-2px);
+
+      box-shadow:
+        0 18px 35px rgba(47, 128, 237, 0.30),
+        0 5px 12px rgba(47, 128, 237, 0.15);
+
+      filter: brightness(1.03);
+    }
+
+    .cta:active {
+      transform: translateY(1px) scale(0.985);
+    }
+
+    .telegram-icon {
+      width: 21px;
+      height: 21px;
+
       display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 8px 16px;
-      margin-top: 20px;
-    }
-    .trust li {
-      list-style: none;
-      display: inline-flex;
       align-items: center;
-      gap: 6px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--ink-soft);
-    }
-    .trust li svg { width: 15px; height: 15px; color: #22c55e; flex-shrink: 0; }
+      justify-content: center;
 
-    .divider {
-      height: 1px;
-      width: 100%;
-      margin: 24px 0 16px;
-      background: linear-gradient(90deg, transparent, var(--border), transparent);
+      flex-shrink: 0;
+    }
+
+    .telegram-icon svg {
+      width: 21px;
+      height: 21px;
+
+      fill: currentColor;
     }
 
     /* =========================================================
-       CREDIT / FOOTER
+       TRUST ITEMS
     ========================================================= */
-    .credit { font-size: 0.85rem; color: var(--ink-mute); }
-    .credit a {
-      color: var(--brand-deep);
-      font-weight: 700;
-      text-decoration: none;
-      transition: color 0.2s ease;
-    }
-    .credit a:hover { color: var(--brand-2); text-decoration: underline; }
 
-    footer {
-      margin-top: 22px;
+    .trust {
+      position: relative;
+      z-index: 2;
+
+      margin-top: 20px;
+
+      display: grid;
+
+      grid-template-columns: repeat(3, 1fr);
+
+      gap: 7px;
+    }
+
+    .trust-item {
+      min-height: 61px;
+
+      padding: 10px 5px;
+
+      border-radius: 15px;
+
+      background: rgba(248, 250, 252, 0.78);
+
+      border: 1px solid rgba(16, 24, 40, 0.055);
+
+      display: flex;
+      flex-direction: column;
+
+      justify-content: center;
+      align-items: center;
+
       text-align: center;
-      font-size: 0.8rem;
-      color: var(--ink-mute);
-      line-height: 1.8;
-      opacity: 0;
-      animation: revealIn 0.6s ease 0.9s forwards;
     }
-    footer a {
-      color: var(--brand-deep);
-      font-weight: 600;
-      text-decoration: none;
+
+    .trust-icon {
+      width: 20px;
+      height: 20px;
+
+      margin-bottom: 5px;
+
+      border-radius: 50%;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      color: #20a66a;
+
+      background: rgba(32, 166, 106, 0.09);
     }
-    footer a:hover { text-decoration: underline; }
+
+    .trust-icon svg {
+      width: 11px;
+      height: 11px;
+
+      stroke: currentColor;
+      stroke-width: 2.5;
+
+      fill: none;
+    }
+
+    .trust-item span:last-child {
+      color: #667085;
+
+      font-size: 9px;
+
+      line-height: 1.2;
+
+      font-weight: 700;
+    }
 
     /* =========================================================
-       RESPONSIVE
+       FOOTER
     ========================================================= */
-    @media (max-width: 380px) {
-      .card { padding: 32px 22px 26px; border-radius: 24px; }
-      .badge { width: 68px; height: 68px; }
-      .ring-wrap { width: 120px; height: 120px; }
-      .count-num { font-size: 2.5rem; }
+
+    .footer {
+      position: relative;
+      z-index: 2;
+
+      text-align: center;
+
+      margin-top: 19px;
+
+      color: #98a2b3;
+
+      font-size: 11px;
+
+      line-height: 1.7;
     }
-    @media (min-width: 768px) {
-      .card { max-width: 480px; padding: 48px 44px 36px; }
+
+    .agency-link {
+      color: #667085;
+
+      font-weight: 700;
+
+      text-decoration: none;
+
+      border-bottom: 1px solid rgba(102, 112, 133, 0.25);
+
+      transition:
+        color 0.2s ease,
+        border-color 0.2s ease;
     }
+
+    .agency-link:hover {
+      color: #3478e5;
+
+      border-color: #3478e5;
+    }
+
+    /* =========================================================
+       DESKTOP
+    ========================================================= */
+
+    @media (min-width: 600px) {
+      body {
+        padding: 45px 24px;
+      }
+
+      .card {
+        padding: 42px 42px 25px;
+
+        border-radius: 38px;
+      }
+
+      .logo-wrap {
+        width: 88px;
+        height: 88px;
+
+        border-radius: 27px;
+
+        margin-bottom: 21px;
+      }
+
+      .hero-description {
+        font-size: 16px;
+      }
+
+      .countdown-card {
+        margin-top: 28px;
+      }
+    }
+
+    /* =========================================================
+       VERY SMALL MOBILE
+    ========================================================= */
+
+    @media (max-width: 350px) {
+      body {
+        padding: 14px 10px;
+      }
+
+      .card {
+        padding: 24px 15px 19px;
+
+        border-radius: 27px;
+      }
+
+      .hero h1 {
+        font-size: 29px;
+      }
+
+      .hero-description {
+        font-size: 14px;
+      }
+
+      .countdown-card {
+        padding: 18px 14px;
+      }
+
+      .trust-item {
+        min-height: 57px;
+      }
+    }
+
+    /* =========================================================
+       REDUCED MOTION
+    ========================================================= */
 
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition: none !important; }
-      .card, .reveal, footer { opacity: 1 !important; transform: none !important; }
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+      }
     }
   </style>
 </head>
+
 <body>
-  <div class="bg" aria-hidden="true"></div>
-  <div class="orb a" aria-hidden="true"></div>
-  <div class="orb b" aria-hidden="true"></div>
 
-  <main class="card" role="main">
-    <!-- Telegram badge -->
-    <div class="badge reveal" aria-hidden="true">
-      <svg viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg">
-        <path d="M21.94 4.32a1.2 1.2 0 0 0-1.28-.18L3.4 11.05c-.94.38-.9 1.73.06 2.05l4.2 1.4 1.6 4.98a1.03 1.03 0 0 0 1.72.42l2.3-2.28 4.13 3.04c.62.46 1.5.13 1.67-.62l3.02-14.3a1.2 1.2 0 0 0-.46-1.42Zm-4.1 3.03-7.3 6.53a.9.9 0 0 0-.29.56l-.28 2.2-1.2-3.74 8.9-5.86c.3-.2.6.2.37.31Z"/>
-      </svg>
-    </div>
+  <!-- Background -->
+  <div class="background" aria-hidden="true">
+    <div class="blob one"></div>
+    <div class="blob two"></div>
+    <div class="blob three"></div>
+  </div>
 
-    <h1 class="reveal">Join Our Telegram Channel</h1>
-    <p class="subtitle reveal">Get instant updates, exclusive content and the latest information directly on Telegram.</p>
+  <!-- Main Page -->
+  <main class="page">
 
-    <!-- Countdown -->
-    <div class="countdown reveal" aria-live="polite">
-      <div class="ring-wrap">
-        <svg viewBox="0 0 120 120">
-          <defs>
-            <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#2f8bfb" />
-              <stop offset="100%" stop-color="#7c5cff" />
-            </linearGradient>
-          </defs>
-          <circle class="ring-bg" cx="60" cy="60" r="52" />
-          <circle class="ring-fg" id="ringFg" cx="60" cy="60" r="52" />
-        </svg>
-        <div class="count-num"><span id="countNum">10</span></div>
+    <section class="card" aria-label="Telegram landing page">
+
+      <!-- Logo -->
+      <div class="logo-wrap">
+        <img
+          src="logo.png"
+          class="logo"
+          alt="Channel Logo"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<span style=&quot;font-size:38px&quot;>✈️</span>';"
+        >
       </div>
-      <div class="redirect-text">
-        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.94 4.32a1.2 1.2 0 0 0-1.28-.18L3.4 11.05c-.94.38-.9 1.73.06 2.05l4.2 1.4 1.6 4.98a1.03 1.03 0 0 0 1.72.42l2.3-2.28 4.13 3.04c.62.46 1.5.13 1.67-.62l3.02-14.3a1.2 1.2 0 0 0-.46-1.42Z"/></svg>
-        Redirecting to Telegram…
+
+      <!-- Badge -->
+      <div class="badge">
+        <span class="badge-dot"></span>
+        Telegram Channel
       </div>
-      <div class="please-wait">Please wait…</div>
-    </div>
 
-    <!-- CTA -->
-    <button class="cta reveal" id="joinBtn" type="button" aria-label="Join our Telegram channel now">
-      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.94 4.32a1.2 1.2 0 0 0-1.28-.18L3.4 11.05c-.94.38-.9 1.73.06 2.05l4.2 1.4 1.6 4.98a1.03 1.03 0 0 0 1.72.42l2.3-2.28 4.13 3.04c.62.46 1.5.13 1.67-.62l3.02-14.3a1.2 1.2 0 0 0-.46-1.42Z"/></svg>
-      JOIN TELEGRAM
-    </button>
+      <!-- Hero -->
+      <div class="hero">
 
-    <!-- Trust -->
-    <ul class="trust reveal">
-      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Fast Access</li>
-      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Free to Join</li>
-      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Instant Updates</li>
-    </ul>
+        <h1>
+          Join Our
+          <span class="gradient-text">Telegram Channel</span>
+        </h1>
 
-    <div class="divider" aria-hidden="true"></div>
+        <p class="hero-description">
+          Get instant updates, exclusive content and the latest
+          information directly on Telegram.
+        </p>
 
-    <p class="credit">Advertise with <a id="creditLink" href="#" target="_blank" rel="noopener noreferrer">Param Ad Optimizer</a></p>
+      </div>
+
+      <!-- Countdown -->
+      <div class="countdown-card">
+
+        <div class="countdown-top">
+
+          <span class="mini-telegram">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M21.4 3.6 18.2 20c-.24 1.16-.87 1.45-1.77.9l-4.86-3.58-2.35 2.26c-.26.26-.48.48-.98.48l.35-4.95 9-8.13c.39-.35-.09-.55-.61-.2L5.85 13.89 1.08 12.4c-1.04-.32-1.06-1.04.22-1.54L20 3.65c.86-.32 1.61.2 1.4-.05Z"/>
+            </svg>
+          </span>
+
+          <span>Secure Redirect</span>
+
+        </div>
+
+        <div class="timer-circle">
+
+          <svg
+            class="timer-svg"
+            viewBox="0 0 120 120"
+            aria-hidden="true"
+          >
+
+            <defs>
+              <linearGradient
+                id="timerGradient"
+                x1="0%"
+                y1="0%"
+                x2="100%"
+                y2="100%"
+              >
+                <stop offset="0%" stop-color="#2aabee"></stop>
+                <stop offset="50%" stop-color="#287bea"></stop>
+                <stop offset="100%" stop-color="#7650df"></stop>
+              </linearGradient>
+            </defs>
+
+            <circle
+              class="timer-track"
+              cx="60"
+              cy="60"
+              r="51"
+            ></circle>
+
+            <circle
+              class="timer-progress"
+              id="timerProgress"
+              cx="60"
+              cy="60"
+              r="51"
+            ></circle>
+
+          </svg>
+
+          <span
+            class="timer-number"
+            id="timerNumber"
+            aria-live="polite"
+          >10</span>
+
+        </div>
+
+        <div class="redirect-text">
+          Redirecting to Telegram...
+        </div>
+
+        <div class="redirect-subtext">
+          Please wait a moment
+        </div>
+
+      </div>
+
+      <!-- CTA -->
+      <button
+        type="button"
+        class="cta"
+        id="joinButton"
+        aria-label="Join Telegram Channel"
+      >
+
+        <span class="telegram-icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M21.4 3.6 18.2 20c-.24 1.16-.87 1.45-1.77.9l-4.86-3.58-2.35 2.26c-.26.26-.48.48-.98.48l.35-4.95 9-8.13c.39-.35-.09-.55-.61-.2L5.85 13.89 1.08 12.4c-1.04-.32-1.06-1.04.22-1.54L20 3.65c.86-.32 1.61.2 1.4-.05Z"/>
+          </svg>
+        </span>
+
+        JOIN TELEGRAM
+
+      </button>
+
+      <!-- Trust -->
+      <div class="trust">
+
+        <div class="trust-item">
+
+          <span class="trust-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z"></path>
+            </svg>
+          </span>
+
+          <span>Fast Access</span>
+
+        </div>
+
+        <div class="trust-item">
+
+          <span class="trust-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M5 12.5 9.5 17 19 7"></path>
+            </svg>
+          </span>
+
+          <span>Free to Join</span>
+
+        </div>
+
+        <div class="trust-item">
+
+          <span class="trust-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 3v18M7 8l5-5 5 5M7 16l5 5 5-5"></path>
+            </svg>
+          </span>
+
+          <span>Instant Updates</span>
+
+        </div>
+
+      </div>
+
+      <!-- Footer -->
+      <footer class="footer">
+
+        <div>
+          © 2026 • All Rights Reserved
+        </div>
+
+        <div>
+          Landing Page by
+          <a
+            href="#"
+            class="agency-link"
+            id="agencyLink"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Snow Ad Agency
+          </a>
+        </div>
+
+      </footer>
+
+    </section>
+
   </main>
 
-  <footer>
-    <div>&copy; 2026 &bull; All Rights Reserved</div>
-    <div>Landing Page by <a id="footerLink" href="#" target="_blank" rel="noopener noreferrer">big</a></div>
-  </footer>
 
   <script>
     /* =========================================================
-       ⚙️  EASY CONFIGURATION — EDIT THESE THREE VALUES ONLY
-       1. TELEGRAM_URL     → your Telegram channel/group link
-       2. AGENCY_URL       → your agency / advertiser link
-       3. COUNTDOWN_SECONDS → how long before auto-redirect
+       EASY CONFIGURATION
+       =========================================================
+
+       ONLY CHANGE THESE 3 VALUES.
     ========================================================= */
-    const TELEGRAM_URL = "https://t.me/+hm7sVbHju-E1M2Fl";
+
+    const TELEGRAM_URL = "https://t.me/yourchannel";
+
     const AGENCY_URL = "https://example.com";
-    const COUNTDOWN_SECONDS = 50;
-    /* ========================================================= */
+
+    const COUNTDOWN_SECONDS = 10;
+
+
+    /* =========================================================
+       DO NOT EDIT BELOW THIS LINE
+    ========================================================= */
 
     (function () {
+
       "use strict";
 
-      // --- Element references ---
-      const numEl = document.getElementById("countNum");
-      const ringEl = document.getElementById("ringFg");
-      const joinBtn = document.getElementById("joinBtn");
-      const creditLink = document.getElementById("creditLink");
-      const footerLink = document.getElementById("footerLink");
 
-      // --- Wire up agency links ---
-      creditLink.href = AGENCY_URL;
-      footerLink.href = AGENCY_URL;
+      /* -------------------------------------------------------
+         ELEMENTS
+      ------------------------------------------------------- */
 
-      // --- Ring geometry ---
-      const R = 52;
-      const CIRC = 2 * Math.PI * R;
-      ringEl.style.strokeDasharray = CIRC;
-      ringEl.style.strokeDashoffset = 0;
+      const timerNumber =
+        document.getElementById("timerNumber");
 
-      // --- State ---
-      let remaining = Math.max(1, parseInt(COUNTDOWN_SECONDS, 10) || 10);
+      const timerProgress =
+        document.getElementById("timerProgress");
+
+      const joinButton =
+        document.getElementById("joinButton");
+
+      const agencyLink =
+        document.getElementById("agencyLink");
+
+
+      /* -------------------------------------------------------
+         TIMER SETTINGS
+      ------------------------------------------------------- */
+
+      const radius = 51;
+
+      const circumference =
+        2 * Math.PI * radius;
+
+      let remaining =
+        Math.max(0, Number(COUNTDOWN_SECONDS) || 10);
+
       let timerId = null;
-      let redirected = false;
-      let cancelled = false;
 
-      // --- Redirect helper (guarded against duplicates) ---
-      function goToTelegram() {
-        if (redirected) return;
+      let redirected = false;
+
+
+      /* -------------------------------------------------------
+         CIRCLE INITIALIZATION
+      ------------------------------------------------------- */
+
+      timerProgress.style.strokeDasharray =
+        circumference;
+
+      timerProgress.style.strokeDashoffset =
+        0;
+
+
+      /* -------------------------------------------------------
+         REDIRECT FUNCTION
+      ------------------------------------------------------- */
+
+      function redirectToTelegram() {
+
+        if (redirected) {
+          return;
+        }
+
         redirected = true;
-        if (timerId) { clearInterval(timerId); timerId = null; }
+
+        if (timerId !== null) {
+          clearInterval(timerId);
+          timerId = null;
+        }
+
         window.location.href = TELEGRAM_URL;
       }
 
-      // --- Render current state ---
-      function render() {
-        numEl.textContent = remaining;
-        // retrigger number pop animation
-        numEl.style.animation = "none";
-        void numEl.offsetWidth;
-        numEl.style.animation = "";
-        const progress = remaining / (parseInt(COUNTDOWN_SECONDS, 10) || 10);
-        ringEl.style.strokeDashoffset = CIRC * (1 - progress);
+
+      /* -------------------------------------------------------
+         UPDATE TIMER UI
+      ------------------------------------------------------- */
+
+      function updateTimer() {
+
+        timerNumber.textContent = remaining;
+
+        const total =
+          Math.max(1, Number(COUNTDOWN_SECONDS) || 10);
+
+        const progress =
+          remaining / total;
+
+        timerProgress.style.strokeDashoffset =
+          circumference * (1 - progress);
+
       }
 
-      // --- Tick ---
-      function tick() {
-        if (cancelled || redirected) return;
-        remaining -= 1;
+
+      /* -------------------------------------------------------
+         NUMBER ANIMATION
+      ------------------------------------------------------- */
+
+      function animateNumber() {
+
+        timerNumber.classList.remove("change");
+
+        void timerNumber.offsetWidth;
+
+        timerNumber.classList.add("change");
+
+        setTimeout(function () {
+
+          timerNumber.classList.remove("change");
+
+        }, 220);
+      }
+
+
+      /* -------------------------------------------------------
+         START COUNTDOWN
+      ------------------------------------------------------- */
+
+      function startCountdown() {
+
+        updateTimer();
+
         if (remaining <= 0) {
-          numEl.textContent = "0";
-          ringEl.style.strokeDashoffset = CIRC;
-          goToTelegram();
+          redirectToTelegram();
           return;
         }
-        render();
+
+        timerId = setInterval(function () {
+
+          remaining--;
+
+          animateNumber();
+
+          updateTimer();
+
+          if (remaining <= 0) {
+
+            clearInterval(timerId);
+
+            timerId = null;
+
+            setTimeout(function () {
+              redirectToTelegram();
+            }, 350);
+
+          }
+
+        }, 1000);
       }
 
-      // --- Start countdown (prevent duplicate timers) ---
-      function startCountdown() {
-        if (timerId) return;
-        render();
-        timerId = setInterval(tick, 1000);
-      }
 
-      // --- CTA: immediate join ---
-      joinBtn.addEventListener("click", function () {
-        goToTelegram();
+      /* -------------------------------------------------------
+         TELEGRAM BUTTON
+      ------------------------------------------------------- */
+
+      joinButton.addEventListener("click", function () {
+
+        window.location.href = TELEGRAM_URL;
+
       });
 
-      // --- Agency links: open in new tab, do NOT trigger Telegram redirect ---
-      function handleAgencyClick(e) {
-        e.stopPropagation();
-        cancelled = true;               // stop the countdown for this click
-        if (timerId) { clearInterval(timerId); timerId = null; }
-        // Let the default anchor behavior open AGENCY_URL in a new tab.
-      }
-      creditLink.addEventListener("click", handleAgencyClick);
-      footerLink.addEventListener("click", handleAgencyClick);
 
-      // --- Kick off ---
+      /* -------------------------------------------------------
+         AGENCY LINK
+         -------------------------------------------------------
+
+         The agency link opens separately and does NOT
+         trigger the Telegram redirect.
+      ------------------------------------------------------- */
+
+      agencyLink.href = AGENCY_URL;
+
+      agencyLink.addEventListener("click", function (event) {
+
+        event.stopPropagation();
+
+        /*
+          Do not clear the countdown here.
+
+          The click opens AGENCY_URL in a new tab because
+          target="_blank" is already set in the HTML.
+        */
+
+      });
+
+
+      /* -------------------------------------------------------
+         START
+      ------------------------------------------------------- */
+
       startCountdown();
+
     })();
   </script>
+
 </body>
 </html>
